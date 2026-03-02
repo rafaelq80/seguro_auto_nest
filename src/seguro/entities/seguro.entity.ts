@@ -18,7 +18,7 @@ import { Usuario } from "../../usuario/entities/usuario.entity"
 export class Seguro {
 	@PrimaryGeneratedColumn()
 	@ApiProperty()
-	id!: number
+	id: number
 
 	@Transform(({ value }: TransformFnParams) => value?.trim())
 	@IsNotEmpty()
