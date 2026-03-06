@@ -1,98 +1,187 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Projeto Gerenciador de Seguros Automotivos - Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<br />
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+<div align="center">
+    <img src="https://i.imgur.com/icgjsRQ.png" title="source: imgur.com" width="50%"/>
+</div>
 
-## Description
+<br /><br />
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 1. Descrição
 
-## Project setup
+Um **Sistema de Gerenciamento de Seguros Automotivos** é uma solução utilizada por seguradoras ou corretoras para **organizar, registrar e acompanhar contratos de seguros de veículos**. Esse tipo de sistema permite centralizar informações importantes como clientes, veículos segurados e apólices, facilitando o controle das operações e a tomada de decisões.
 
-```bash
-$ npm install
+O objetivo principal de um sistema de gestão de seguros é **automatizar processos administrativos**, melhorar o controle das apólices e proporcionar maior eficiência no atendimento ao cliente.
+
+Entre os principais benefícios de um sistema desse tipo, destacam-se:
+
+1. **Centralização das informações** de clientes, veículos e seguros
+2. **Facilidade na gestão de apólices** e contratos
+3. **Automação de processos administrativos**
+4. **Melhor acompanhamento de status e vigência dos seguros**
+
+Esses sistemas normalmente são disponibilizados por meio de **plataformas web**, permitindo que operadores cadastrem clientes, registrem veículos segurados e gerenciem contratos de seguro de forma prática e segura.
+
+------
+
+# 2. Sobre esta API
+
+Neste projeto será desenvolvido um **Mínimo Produto Viável (MVP)** de um **Sistema de Gerenciamento de Seguros Automotivos**, implementando as operações **CRUD (Create, Read, Update, Delete)** para os principais registros de um sistema desse tipo.
+
+A API foi desenvolvida utilizando **NestJS e TypeScript**, sendo responsável por disponibilizar os endpoints que permitem a manipulação dos dados do sistema.
+
+A solução contempla três entidades principais:
+
+### 1. **Usuários**
+
+Representam os operadores do sistema, como funcionários da seguradora ou corretores responsáveis por gerenciar clientes e seguros.
+
+**Exemplo:**
+João trabalha em uma corretora de seguros e utiliza o sistema para cadastrar clientes e registrar apólices de seguros de veículos.
+
+------
+
+### 2. **Clientes**
+
+Representam as pessoas que contratam seguros para seus veículos.
+
+**Exemplo:**
+Maria possui um automóvel e contratou um seguro. Seus dados foram cadastrados no sistema para facilitar o gerenciamento da apólice.
+
+------
+
+### 3. **Apólices (Seguros)**
+
+Representam os **contratos de seguro associados a um cliente e a um veículo**. Nelas são armazenadas informações como tipo de cobertura, data de vigência, valor do seguro e status da apólice.
+
+**Exemplo:**
+Maria contratou um seguro para seu carro. O sistema registra essa contratação como uma **Apólice**, vinculada ao cliente e ao veículo.
+
+------
+
+## 2.1 Exemplo Prático – Fluxo no Sistema
+
+1. O **Usuário** cadastra um **Cliente** no sistema.
+2. O usuário registra uma **Apólice de Seguro**, associando o cliente ao veículo segurado.
+
+------
+
+## 2.2 Principais Funcionalidades
+
+1. Cadastro e gerenciamento de usuários do sistema
+2. Registro e gerenciamento de clientes
+3. Cadastro e gerenciamento de apólices de seguro
+
+------
+
+# 3. Diagrama de Classes
+
+```mermaid
+classDiagram
+class Cliente {
+  - id : number
+  - nome : string
+  - email : string
+  - foto : string
+  - seguro : []Seguro
+  + findAll()
+  + findById(id : number)
+  + findByNome(nome : string)
+  + create(cliente : Cliente)
+  + update(cliente : Cliente)
+  + delete(id : number)
+}
+
+class Seguro {
+  - id : number
+  - fabricante : string
+  - modelo : string
+  - anoFabricacao : number
+  - anoModelo : number
+  - placa : string
+  - valorBase : number
+  - valorDesconto : number
+  - valorFinal : number
+  - dataInicio : Date
+  - dataFim : Date
+  - cliente : Cliente
+  - usuario : Usuario
+  + findAll()
+  + findById(id : number)
+  + create(seguro : Seguro)
+  + update(seguro : Seguro)
+  + delete(id : number)
+}
+
+class Usuario {
+  - id : number
+  - nome : string
+  - usuario : string
+  - senha : string
+  - foto : string
+  - seguro : []Seguro
+  + findAll()
+  + findById(id : number)
+  + create(usuario : Usuario)
+  + update(usuario : Usuario)
+  + autenticar(usuariologin : UsuarioLogin)
+}
+
+class UsuarioLogin{
+  - id : number
+  - nome : string
+  - usuario : string
+  - senha : string
+  - foto : string
+  - token : string
+}
+
+Cliente --> Seguro
+Usuario --> Seguro
 ```
 
-## Compile and run the project
+### Observações Importantes
 
-```bash
-# development
-$ npm run start
+- O preço do seguro é calculado automaticamente
+- Automóveis com mais de 10 anos, recebem um desconto de 20%
 
-# watch mode
-$ npm run start:dev
+------
 
-# production mode
-$ npm run start:prod
+# 4. Diagrama Entidade-Relacionamento (DER)
+
+------
+
+<div align="center">
+    <img src="https://imgur.com/S5C6XfP.png" title="source: imgur.com" />
+</div>
+
+# 5. Tecnologias utilizadas
+
+| Item                          | Descrição  |
+| ----------------------------- | ---------- |
+| **Servidor**                  | Node.js    |
+| **Linguagem de programação**  | TypeScript |
+| **Framework**                 | NestJS     |
+| **ORM**                       | TypeORM    |
+| **Banco de dados Relacional** | MySQL      |
+
+------
+
+# 6. Configuração e Execução
+
+1. Clone o repositório
+2. Instale as dependências:
+
+```
+npm install
 ```
 
-## Run tests
+1. Configure o banco de dados no arquivo `app.module.ts`
+2. Execute a aplicação:
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+```
+npm run start:dev
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+A API será iniciada em ambiente de desenvolvimento e ficará disponível para consumo por aplicações frontend, como o **Gerenciador de Seguros Automotivos desenvolvido em React**.
